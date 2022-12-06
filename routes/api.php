@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DetailOrderController;
+use App\Http\Controllers\ImageUploadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +28,5 @@ Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('detailOrders', DetailOrderController::class);
+Route::post('/upload', [ImageUploadController::class, 'uploadImage'])
+    ->name('images.upload');

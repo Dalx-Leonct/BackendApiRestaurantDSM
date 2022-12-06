@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Validator;
 
 class CategoryController extends Controller
 {
@@ -47,6 +48,7 @@ class CategoryController extends Controller
         return 'Categoria agregada correctamente';
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -76,10 +78,32 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(Request $request, $id)
     {
-        $category->update($request->all());
+       /* $category->update($request->all());
         return $category;
+        */
+        $validate = Validator::make($request->all(),[
+
+            'name'=> 'required|unique:categories|min:5|max:25'
+
+        ]);
+
+        if($validate->fails()){
+            return response()->json([
+                'status' => 0,
+                'errors' => $validate->errors()
+            ]);
+        }
+
+        $category=Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        return response()->json([
+            'status' => 1,
+            'category'=> $category
+        ]);
     }
 
     /**
@@ -91,6 +115,9 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return 'Categoria eliminada';
+        return response()->json([
+            'status' => 1,
+            'category'=> $category->name
+        ]);
     }
 }

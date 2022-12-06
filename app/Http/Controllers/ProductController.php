@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -90,10 +91,40 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $product->update($request->all());
-        return $product;
+
+        $validate = Validator::make($request->all(),[
+
+            'name' => 'required|unique:products|min:5|max:25',
+            'description' => 'required|min:5|max:255',
+            'price'=> 'required',
+            'stock'=> 'required',
+            'image'=>'required',
+            'category_id'=>'required'
+
+        ]);
+
+        if($validate->fails()){
+            return response()->json([
+                'status' => 0,
+                'errors' => $validate->errors()
+            ]);
+        }
+
+        $product=Product::find($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->image = $request->image;
+        $product->category_id = $request->category_id;
+        $product->save();
+
+        return response()->json([
+            'status' => 1,
+            'product'=> $product
+        ]);
     }
 
     /**
@@ -105,6 +136,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return 'Producto eliminado';
+        return response()->json([
+            'status' => 1
+        ]);
     }
 }
