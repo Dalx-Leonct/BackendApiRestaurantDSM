@@ -12,6 +12,8 @@ class Order extends Model
         'codeOrder',
         'total',
         'orderStatus',
+        'minutes',
+        'seconds',
         'tables_id'
     ];
 

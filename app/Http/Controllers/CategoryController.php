@@ -37,15 +37,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(),[
             'name' => 'required|unique:categories|min:5|max:25'
         ]);
 
-        Category::create([
+        if($validate->fails()){
+            return response()->json([
+                'status' => 0,
+                'errors' => $validate->errors()
+            ]);
+        }
+
+        $category = Category::create([
             'name' => $request->name
         ]);
 
-        return 'Categoria agregada correctamente';
+        return response()->json([
+            'status' => 1,
+            'category'=> $category
+        ]);
     }
 
 

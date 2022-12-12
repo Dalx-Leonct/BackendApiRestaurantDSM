@@ -43,14 +43,19 @@ class OrderController extends Controller
             'tables_id'=>'required'
         ]);
 
-        Order::create([
+        $orden = Order::create([
             'codeOrder'=> $request->codeOrder,
             'total'=>$request->total,
             'orderStatus'=>$request->orderStatus,
+            'minutes'=>0,
+            'seconds'=>0,
             'tables_id'=> $request->tables_id
         ]);
 
-        return 'Orden agregada correctamente';
+        return response()->json([
+            'status' => 1,
+            'order'=> $orden
+        ]);
     }
 
     /**

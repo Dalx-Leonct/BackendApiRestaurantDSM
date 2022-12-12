@@ -38,17 +38,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:products|min:5|max:25',
+        $validate = Validator::make($request->all(),[
+            'name' => 'required|min:5|max:25',
             'description' => 'required|min:5|max:255',
             'price'=> 'required',
             'stock'=> 'required',
-            'codProduct'=> 'required',
+            'codProduct'=> 'required|unique:products',
             'image'=>'required',
             'category_id'=>'required'
         ]);
 
-        Product::create([
+        if($validate->fails()){
+            return response()->json([
+                'status' => 0,
+                'errors' => $validate->errors()
+            ]);
+        }
+
+        $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -59,7 +66,10 @@ class ProductController extends Controller
 
         ]);
 
-        return 'Producto agregado correctamente';
+        return response()->json([
+            'status' => 1,
+            'product'=> $product
+        ]);
     }
 
     /**
@@ -96,7 +106,7 @@ class ProductController extends Controller
 
         $validate = Validator::make($request->all(),[
 
-            'name' => 'required|unique:products|min:5|max:25',
+            'name' => 'required|min:5|max:25',
             'description' => 'required|min:5|max:255',
             'price'=> 'required',
             'stock'=> 'required',

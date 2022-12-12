@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('codeOrder')->unique();
             $table->integer('total');
             $table->enum('orderStatus', ['Confirmed','Waiting','Finish']);
+            $table->integer('minutes');
+            $table->integer('seconds');
             $table->foreignid('tables_id')->constrained('tables');
             $table->timestamps();
         });
