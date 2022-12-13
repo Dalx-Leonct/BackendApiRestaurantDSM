@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailOrder;
+use App\Models\Order;
 use App\Http\Requests\StoreDetailOrderRequest;
 use App\Http\Requests\UpdateDetailOrderRequest;
 
@@ -62,6 +63,11 @@ class DetailOrderController extends Controller
     public function show(DetailOrder $detailOrder)
     {
         //
+    }
+
+    public function show1($id)
+    {
+        return DetailOrder::where('order_id',$id)->FirstOrFail();
     }
 
     /**

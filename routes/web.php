@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DetailOrderController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('administrador.index');
-});
+//Route::get('/', function () {
+//    return view('administrador.home');
+//});
+
+//ruta de pruebas
+//Route::get('/vacio', [OrderController::class,'show1']);
+
+//datos de ordenes
+Route::get('/', [OrderController::class,'show1']);
+//datos detalles de orden
+Route::get('/orderDetail/{id}', [DetailOrderController::class, 'show1']);
+//datos productos por id
+Route::get('/product/{id}', [ProductController::class, 'show1']);

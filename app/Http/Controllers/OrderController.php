@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -67,6 +68,12 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+    }
+
+    public function show1()
+    {
+        $orders = Order::all();
+        return view('administrador.home')->with('orders',$orders);
     }
 
     /**

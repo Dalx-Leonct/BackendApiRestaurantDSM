@@ -14,8 +14,6 @@
         <div align="center"><b>Administrador Restaurant</b> </div>
         <div align="center" ><img src="/images/camaleon.png" alt="Foto de restaurant" width="200" height="200"></div>
 
-
-
 		<div class="columns is-centered" id="elemento-1">
 			<div class="column has-text-centered">
 				<div id="contenedorInputs">

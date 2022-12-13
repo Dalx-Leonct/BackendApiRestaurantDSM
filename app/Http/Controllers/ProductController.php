@@ -83,6 +83,11 @@ class ProductController extends Controller
         //
     }
 
+    public function show1($id)
+    {
+        return Product::where('id',$id)->FirstOrFail();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
