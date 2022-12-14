@@ -54,10 +54,10 @@ Deberás tener descargadas las siguientes aplicaciones antes de poder correr el 
 ----------------------------------------------------------------------------------------------------------------------------------
 ## Iniciar aplicacion
 
-9. Finalmente para encender el servidor pon en la terminal:
+9. Finalmente para encender el servidor para la web pon en la terminal:
 	> php artisan serve
 
-
+10. Para correr el servidor local pon en la terminal:
     > php artisan serve --host 0.0.0.0
 
 *(Este y solo este comando deberás utilizarlo una vez cada que quieras usar el proyecto)
