@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Controllers\Validator;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -98,6 +99,26 @@ class OrderController extends Controller
     {
         $order->update($request->all());
         return $order;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateOrderRequest  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function updateTime(Request $request)
+    {
+        $order=Order::find($request->id);
+        $order->minutes=$request->minutes;
+        $order->seconds=$request->seconds;
+        $order->save();
+
+        return response()->json([
+            'status' => 1,
+            'order'=> $orden
+        ]);
     }
 
     /**

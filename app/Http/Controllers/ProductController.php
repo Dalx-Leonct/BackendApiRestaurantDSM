@@ -85,7 +85,7 @@ class ProductController extends Controller
 
     public function show1($id)
     {
-        return Product::where('id',$id)->FirstOrFail();
+        return Product::where('id',$id)->get();
     }
 
     /**

@@ -16,16 +16,11 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('administrador.home');
-//});
-
-//ruta de pruebas
-//Route::get('/vacio', [OrderController::class,'show1']);
-
-//datos de ordenes
+//Datos de ordenes
 Route::get('/', [OrderController::class,'show1']);
-//datos detalles de orden
+//Datos detalles de orden por id
 Route::get('/orderDetail/{id}', [DetailOrderController::class, 'show1']);
-//datos productos por id
+//Datos productos por id
 Route::get('/product/{id}', [ProductController::class, 'show1']);
+//Actualizar el tiempo de espera de una orden especifica
+Route::post('/orderUpdateTime', [OrderController::class, 'updateTime']);

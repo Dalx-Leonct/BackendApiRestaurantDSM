@@ -67,7 +67,7 @@ class DetailOrderController extends Controller
 
     public function show1($id)
     {
-        return DetailOrder::where('order_id',$id)->FirstOrFail();
+        return DetailOrder::where('order_id',$id)->get();
     }
 
     /**
