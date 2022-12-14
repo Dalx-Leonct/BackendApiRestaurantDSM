@@ -38,23 +38,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //Validacion del producto
         $validate = Validator::make($request->all(),[
             'name' => 'required|min:5|max:25',
             'description' => 'required|min:5|max:255',
-            'price'=> 'required',
+            'price'=> 'required|regex:/^\d*(.\d{2})?$/|numeric|gt:0',
             'stock'=> 'required',
             'codProduct'=> 'required|unique:products',
             'image'=>'required',
             'category_id'=>'required'
         ]);
-
+        //Si falla retornara un error
         if($validate->fails()){
             return response()->json([
                 'status' => 0,
                 'errors' => $validate->errors()
             ]);
         }
-
+        //Creacion del producto
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -108,18 +109,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //Validacion de la actualizacion
         $validate = Validator::make($request->all(),[
 
             'name' => 'required|min:5|max:25',
             'description' => 'required|min:5|max:255',
-            'price'=> 'required',
+            'price'=> 'required|regex:/^\d*(.\d{2})?$/|numeric|gt:0', 
             'stock'=> 'required',
             'image'=>'required',
             'category_id'=>'required'
 
         ]);
-
+        //Si falla retorna un error
         if($validate->fails()){
             return response()->json([
                 'status' => 0,
