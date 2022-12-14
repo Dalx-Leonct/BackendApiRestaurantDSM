@@ -17,62 +17,33 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
             'name' => 'Empanadas',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
+            'description' => 'Empanadas sureñas',
+            'price' => 4000,
             'stock' => 10,
             'codProduct' => '1q2w3e41',
-            'image' => 'x',
+            'image' => 'https://t2.rg.ltmcdn.com/es/posts/7/5/6/empanada_chilena_de_carne_11657_600_square.jpg',
             'category_id' => 1, //Cat: Entradas
         ]);
 
         DB::table('products')->insert([
             'name' => 'Papas Fritas',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
+            'description' => 'Papas fritas familiares',
+            'price' => 7000,
             'stock' => 10,
             'codProduct' => '1q2w3e42',
-            'image' => 'x',
+            'image' => 'https://cdnx.jumpseller.com/elmonarcarengo-gmail-com/image/3895604/_572_369_1288208.jpg?1600711274',
             'category_id' => 1,
         ]);
 
         DB::table('products')->insert([
             'name' => 'Lomo a lo pobre',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
+            'description' => 'Lomo a lo pobre con huevo',
+            'price' => 12000,
             'stock' => 10,
             'codProduct' => '1q2w3e43',
-            'image' => 'x',
+            'image' => 'https://www.comedera.com/wp-content/uploads/2022/06/Lomo-a-lo-pobre-shutterstock_1718731168.jpg',
             'category_id' => 2, //Cat: Fondos
         ]);
 
-        DB::table('products')->insert([
-            'name' => 'Risotto de tocino',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
-            'stock' => 10,
-            'codProduct' => '1q2w3e44',
-            'image' => 'x',
-            'category_id' => 2, 
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Helado de Chocolate Suizo',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
-            'stock' => 10,
-            'codProduct' => '1q2w3e45',
-            'image' => 'x',
-            'category_id' => 3, //Cat: Postres
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Pepsi',
-            'description' => 'Sin descripcion',
-            'price' => 1000,
-            'stock' => 10,
-            'codProduct' => '1q2w3e46',
-            'image' => 'x',
-            'category_id' => 4, //Cat: Bebidas
-        ]);//
     }
 }
