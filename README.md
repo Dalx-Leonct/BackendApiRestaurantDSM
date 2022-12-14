@@ -56,6 +56,7 @@ Deberás tener descargadas las siguientes aplicaciones antes de poder correr el 
 
 9. Finalmente para encender el servidor pon en la terminal:
 	> php artisan serve
+    > php artisan serve --host 0.0.0.0
 
 *(Este y solo este comando deberás utilizarlo una vez cada que quieras usar el proyecto)
 
